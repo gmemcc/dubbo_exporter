@@ -1,0 +1,17 @@
+image:
+  repository: docker.gmem.cc/prometheus/dubbo_exporter
+  tag: 1.0-SNAPSHOT
+
+resources:
+  reqCpu: 500
+  reqMem: 1024
+  lmtCpu: 1000
+  lmtMem: 1024
+
+javaOptions: -server -Xms768m -Xmx768m
+
+logLevel: DEBUG
+
+zookeeper:
+  host: zk
+  port: 2181

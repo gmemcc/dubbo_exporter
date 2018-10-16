@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+    tier: devops
+    application: {{ .Chart.Name }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+  application.properties: |
+    logging.level.root=INFO
+    logging.level.cc.gmem={{ .Values.logLevel }}
+
+    spring.application.name={{ .Chart.Name }}
+    spring.dubbo.server=true
+    spring.dubbo.registry=zookeeper://{{ .Values.zookeeper.host }}:{{ .Values.zookeeper.port }}

@@ -1,0 +1,7 @@
+appVersion: 1.0-SNAPSHOT
+description: Dubbo exporter for prometheus
+engine: gotpl
+home: https://github.com/gmemcc/dubbo_exporter
+icon: http://cdn.gmem.site/images/k8s/dubbo.png
+name: dubbo-exporter
+version: 1.0

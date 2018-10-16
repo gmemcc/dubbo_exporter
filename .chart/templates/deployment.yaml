@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+    tier: devops
+    application: {{ .Chart.Name }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      tier: application
+      application: {{ .Chart.Name }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      annotations:
+        prometheus.io/path: /metrics
+        prometheus.io/port: "9100"
+        prometheus.io/scrape: "true"
+      labels:
+        tier: application
+        application: {{ .Chart.Name }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: exporter
+        image: {{ .Values.image.repository}}:{{ .Values.image.tag}}
+        imagePullPolicy: Always
+        command:  [ "java", "-jar", "/app.jar","","--spring.config.location=/config/application.properties" ]
+        resources:
+          requests:
+            cpu: {{ .Values.resources.reqCpu }}m
+            memory: {{ .Values.resources.reqMem }}Mi
+          limits:
+            cpu: {{ .Values.resources.lmtCpu }}m
+            memory: {{ .Values.resources.lmtMem }}Mi
+        env:
+          - name: JAVA_TOOL_OPTIONS
+            value: {{ .Values.javaOptions}}
+        volumeMounts:
+        - mountPath: /config
+          name: config
+      volumes:
+      - name: config
+        configMap:
+          name: {{ .Chart.Name }}
