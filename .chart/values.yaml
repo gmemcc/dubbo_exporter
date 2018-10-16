@@ -8,7 +8,7 @@ resources:
   lmtCpu: 1000
   lmtMem: 1024
 
-javaOptions: -server -Xms768m -Xmx768m
+javaOptions: -Xms768m -Xmx768m
 
 logLevel: DEBUG
 
