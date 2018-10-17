@@ -11,5 +11,9 @@ Execute the following script to build:
     cd dubbo_exporter
     mvn clean package
     
-Packaged helm chart will be populated into target/charts directory, docker image with repository **docker.gmem.cc/prometheus/dubbo_exporter** will be created, you may modify configuration of dockerfile-maven-plugin in pom.xml to change this default repository.
+Docker image with repository **docker.gmem.cc/prometheus/dubbo_exporter** will be generated, you may modify configuration of dockerfile-maven-plugin in pom.xml to change this default repository, and run
+    mvn dockerfile:push
+to push the image to your private registry.
+
+Packaged helm chart will be populated into target/charts directory.
 
