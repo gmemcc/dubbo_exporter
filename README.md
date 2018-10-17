@@ -20,3 +20,12 @@ to push the image to your private registry.
 
 Packaged helm chart will be populated into target/charts directory.
 
+## Deploy
+Execute the following script to deploy dubbo_exporter on your kubernetes cluster:
+
+    mvn bash:run
+
+Also, you can invoke helm cli manually:
+
+    helm delete dubbo-exporter --purge
+    helm install target/charts/dubbo_exporter.tgz --name=dubbo-exporter --set zookeeper.host=zk,zookeeper.port=2181
