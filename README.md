@@ -31,7 +31,7 @@ Also, you can invoke helm cli manually:
     helm install target/charts/dubbo_exporter.tgz --name=dubbo-exporter --set zookeeper.host=zk,zookeeper.port=2181
 
 ## Metrics
-All metrics are exposed by endpoint http://$DUBBO_EXPORTER_POD_IP:9100/metrics: 
+All metrics are exposed by endpoint **http://$DUBBO_EXPORTER_POD_IP:9100/metrics**: 
 
     # HELP dubbo_success_count Total successful invocation count
     # TYPE dubbo_success_count counter
