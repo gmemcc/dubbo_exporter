@@ -1,0 +1,39 @@
+@option discardLogicWhitespace=false
+@import java.util.*
+@import java.util.concurrent.atomic.AtomicReference
+@import com.alibaba.dubbo.monitor.dubbo.Statistics
+@args (Map<Statistics, AtomicReference<long[]>> statistics)
+@for (( stat, metricsRef) : statistics) {
+@with (application = stat.getApplication(),service = stat.getService(), method = stat.getMethod(), server = stat.getServer(), client = stat.getClient(), metrics=metricsRef.get()){
+# HELP dubbo_success_count Total successful invocation count
+# TYPE dubbo_success_count counter
+dubbo_success_count{application="@application",service="@service",method="@method",server="@server",client="@client"} @metrics[0]
+# HELP dubbo_failure_count Total failed invocation count
+# TYPE dubbo_failure_count counter
+dubbo_failure_count{application="@application",service="@service",method="@method",server="@server",client="@client"} @metrics[1]
+# HELP dubbo_input_bytes Total input message size
+# TYPE dubbo_input_bytes counter
+dubbo_input_bytes{application="@application",service="@service",method="@method",server="@server",client="@client"} @metrics[2]
+# HELP dubbo_output_bytes Total output message size
+# TYPE dubbo_output_bytes counter
+dubbo_output_bytes{application="@application",service="@service",method="@method",server="@server",client="@client"} @metrics[3]
+# HELP dubbo_elapsed_ms Total elapsed milliseconds during invocation
+# TYPE dubbo_elapsed_ms counter
+dubbo_elapsed_ms{application="@application",service="@service",method="@method",server="@server",client="@client"} @metrics[4]
+# HELP dubbo_concurrent_requests Instant concurrent request
+# TYPE dubbo_concurrent_requests gauge
+dubbo_concurrent_requests{application="@application",service="@service",method="@method",server="@server",client="@client"} @metrics[5]
+# HELP dubbo_input_bytes_max Max input message size
+# TYPE dubbo_input_bytes_max gauge
+dubbo_input_bytes_max{application="@application",service="@service",method="@method",server="@server",client="@client"} @metrics[6]
+# HELP dubbo_output_bytes_max Max output message size
+# TYPE dubbo_output_bytes_max gauge
+dubbo_output_bytes_max{application="@application",service="@service",method="@method",server="@server",client="@client"} @metrics[7]
+# HELP dubbo_elapsed_ms_max Max elapsed milliseconds during invocation
+# TYPE dubbo_elapsed_ms_max gauge
+dubbo_elapsed_ms{application="@application",service="@service",method="@method",server="@server",client="@client"} @metrics[8]
+# HELP dubbo_concurrent_requests_max Max instant concurrent request
+# TYPE dubbo_concurrent_requests_max gauge
+dubbo_concurrent_requests_max{application="@application",service="@service",method="@method",server="@server",client="@client"} @metrics[9]
+}
+}
