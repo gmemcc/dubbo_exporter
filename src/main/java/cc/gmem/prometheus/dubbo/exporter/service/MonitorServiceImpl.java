@@ -21,7 +21,7 @@ public class MonitorServiceImpl implements MonitorService {
     private static final Logger LOGGER = LoggerFactory.getLogger( MonitorServiceImpl.class );
 
     // If true, the first metric put into statisticsMap must have non-zero request(success + failure) count
-    @Value( "dubbo.exporter.discard.empty.metrics" )
+    @Value( "${dubbo.exporter.discard.empty.metrics}" )
     private boolean discardEmptyMetrics;
 
     private static final int LENGTH = 11;
