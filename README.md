@@ -35,64 +35,64 @@ All metrics are exposed by endpoint **http://$DUBBO_EXPORTER_POD_IP:9100/metrics
 
     # HELP dubbo_success_count Total successful invocation count
     # TYPE dubbo_success_count counter
-    dubbo_success_count{application="dubbo-greeting-service",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 27462
+    dubbo_success_count{dubbo_application="dubbo-greeting-service",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 27462
     # HELP dubbo_failure_count Total failed invocation count
     # TYPE dubbo_failure_count counter
-    dubbo_failure_count{application="dubbo-greeting-service",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 0
+    dubbo_failure_count{dubbo_application="dubbo-greeting-service",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 0
     # HELP dubbo_input_bytes Total input message size
     # TYPE dubbo_input_bytes counter
-    dubbo_input_bytes{application="dubbo-greeting-service",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 6590885
+    dubbo_input_bytes{dubbo_application="dubbo-greeting-service",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 6590885
     # HELP dubbo_output_bytes Total output message size
     # TYPE dubbo_output_bytes counter
-    dubbo_output_bytes{application="dubbo-greeting-service",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 0
+    dubbo_output_bytes{dubbo_application="dubbo-greeting-service",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 0
     # HELP dubbo_elapsed_ms Total elapsed milliseconds during invocation
     # TYPE dubbo_elapsed_ms counter
-    dubbo_elapsed_ms{application="dubbo-greeting-service",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 13363138
+    dubbo_elapsed_ms{dubbo_application="dubbo-greeting-service",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 13363138
     # HELP dubbo_concurrent_requests Instant concurrent request
     # TYPE dubbo_concurrent_requests gauge
-    dubbo_concurrent_requests{application="dubbo-greeting-service",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 9
+    dubbo_concurrent_requests{dubbo_application="dubbo-greeting-service",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 9
     # HELP dubbo_input_bytes_max Max input message size
     # TYPE dubbo_input_bytes_max gauge
-    dubbo_input_bytes_max{application="dubbo-greeting-service",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 243
+    dubbo_input_bytes_max{dubbo_application="dubbo-greeting-service",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 243
     # HELP dubbo_output_bytes_max Max output message size
     # TYPE dubbo_output_bytes_max gauge
-    dubbo_output_bytes_max{application="dubbo-greeting-service",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 0
+    dubbo_output_bytes_max{dubbo_application="dubbo-greeting-service",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 0
     # HELP dubbo_elapsed_ms_max Max elapsed milliseconds during invocation
     # TYPE dubbo_elapsed_ms_max gauge
-    dubbo_elapsed_ms{application="dubbo-greeting-service",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 1052
+    dubbo_elapsed_ms{dubbo_application="dubbo-greeting-service",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 1052
     # HELP dubbo_concurrent_requests_max Max instant concurrent request
     # TYPE dubbo_concurrent_requests_max gauge
-    dubbo_concurrent_requests_max{application="dubbo-greeting-service",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 10
+    dubbo_concurrent_requests_max{dubbo_application="dubbo-greeting-service",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 10
     
     
     
     # HELP dubbo_success_count Total successful invocation count
     # TYPE dubbo_success_count counter
-    dubbo_success_count{application="dubbo-consumer",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 27373
+    dubbo_success_count{dubbo_application="dubbo-consumer",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 27373
     # HELP dubbo_failure_count Total failed invocation count
     # TYPE dubbo_failure_count counter
-    dubbo_failure_count{application="dubbo-consumer",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 77
+    dubbo_failure_count{dubbo_application="dubbo-consumer",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 77
     # HELP dubbo_input_bytes Total input message size
     # TYPE dubbo_input_bytes counter
-    dubbo_input_bytes{application="dubbo-consumer",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 0
+    dubbo_input_bytes{dubbo_application="dubbo-consumer",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 0
     # HELP dubbo_output_bytes Total output message size
     # TYPE dubbo_output_bytes counter
-    dubbo_output_bytes{application="dubbo-consumer",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 958098
+    dubbo_output_bytes{dubbo_application="dubbo-consumer",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 958098
     # HELP dubbo_elapsed_ms Total elapsed milliseconds during invocation
     # TYPE dubbo_elapsed_ms counter
-    dubbo_elapsed_ms{application="dubbo-consumer",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 13563399
+    dubbo_elapsed_ms{dubbo_application="dubbo-consumer",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 13563399
     # HELP dubbo_concurrent_requests Instant concurrent request
     # TYPE dubbo_concurrent_requests gauge
-    dubbo_concurrent_requests{application="dubbo-consumer",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 8
+    dubbo_concurrent_requests{dubbo_application="dubbo-consumer",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 8
     # HELP dubbo_input_bytes_max Max input message size
     # TYPE dubbo_input_bytes_max gauge
-    dubbo_input_bytes_max{application="dubbo-consumer",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 0
+    dubbo_input_bytes_max{dubbo_application="dubbo-consumer",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 0
     # HELP dubbo_output_bytes_max Max output message size
     # TYPE dubbo_output_bytes_max gauge
-    dubbo_output_bytes_max{application="dubbo-consumer",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 38
+    dubbo_output_bytes_max{dubbo_application="dubbo-consumer",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 38
     # HELP dubbo_elapsed_ms_max Max elapsed milliseconds during invocation
     # TYPE dubbo_elapsed_ms_max gauge
-    dubbo_elapsed_ms{application="dubbo-consumer",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 1037
+    dubbo_elapsed_ms{dubbo_application="dubbo-consumer",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 1037
     # HELP dubbo_concurrent_requests_max Max instant concurrent request
     # TYPE dubbo_concurrent_requests_max gauge
-    dubbo_concurrent_requests_max{application="dubbo-consumer",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 10
+    dubbo_concurrent_requests_max{dubbo_application="dubbo-consumer",service="cc.gmem.dubbo.greeting.service.GreetingService",method="sayHelloTo",server="172.27.121.166:20880",client="172.27.252.186"} 10
