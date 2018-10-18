@@ -6,6 +6,7 @@ import com.alibaba.dubbo.monitor.MonitorService;
 import com.alibaba.dubbo.monitor.dubbo.Statistics;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -19,7 +20,11 @@ public class MonitorServiceImpl implements MonitorService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger( MonitorServiceImpl.class );
 
-    private static final int LENGTH = 10;
+    // If true, the first metric put into statisticsMap must have non-zero request(success + failure) count
+    @Value( "dubbo.exporter.discard.empty.metrics" )
+    private boolean discardEmptyMetrics;
+
+    private static final int LENGTH = 11;
 
     private final ConcurrentMap<Statistics, AtomicReference<long[]>> statisticsMap = new ConcurrentHashMap<Statistics, AtomicReference<long[]>>();
 
@@ -28,6 +33,7 @@ public class MonitorServiceImpl implements MonitorService {
         LOGGER.debug( "Original statistics collected:\n{}", url.toString() );
         int success = url.getParameter( MonitorService.SUCCESS, 0 );
         int failure = url.getParameter( MonitorService.FAILURE, 0 );
+        int total = success + failure;
         int input = url.getParameter( MonitorService.INPUT, 0 );
         int output = url.getParameter( MonitorService.OUTPUT, 0 );
         int elapsed = url.getParameter( MonitorService.ELAPSED, 0 );
@@ -39,6 +45,9 @@ public class MonitorServiceImpl implements MonitorService {
         Statistics statistics = new Statistics( url );
         AtomicReference<long[]> reference = statisticsMap.get( statistics );
         if ( reference == null ) {
+            if ( discardEmptyMetrics && total == 0 ) {
+                return;
+            }
             statisticsMap.putIfAbsent( statistics, new AtomicReference<long[]>() );
             reference = statisticsMap.get( statistics );
         }
@@ -57,6 +66,7 @@ public class MonitorServiceImpl implements MonitorService {
                 update[7] = maxOutput;
                 update[8] = maxElapsed;
                 update[9] = maxConcurrent;
+                update[10] = total;
             } else {
                 update[0] = current[0] + success;
                 update[1] = current[1] + failure;
@@ -68,6 +78,7 @@ public class MonitorServiceImpl implements MonitorService {
                 update[7] = current[7] > maxOutput ? current[7] : maxOutput;
                 update[8] = current[8] > maxElapsed ? current[8] : maxElapsed;
                 update[9] = current[9] > maxConcurrent ? current[9] : maxConcurrent;
+                update[10] = current[10] + total;
             }
         } while ( !reference.compareAndSet( current, update ) );
     }

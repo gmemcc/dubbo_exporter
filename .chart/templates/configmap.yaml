@@ -16,3 +16,5 @@ data:
     spring.application.name={{ .Chart.Name }}
     spring.dubbo.server=true
     spring.dubbo.registry=zookeeper://{{ .Values.zookeeper.host }}:{{ .Values.zookeeper.port }}
+
+    dubbo.exporter.discard.empty.metrics=true
