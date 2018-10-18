@@ -12,6 +12,7 @@ data:
     logging.level.root=INFO
     logging.level.cc.gmem={{ .Values.logLevel }}
 
+    server.port=9100
     spring.application.name={{ .Chart.Name }}
     spring.dubbo.server=true
     spring.dubbo.registry=zookeeper://{{ .Values.zookeeper.host }}:{{ .Values.zookeeper.port }}
