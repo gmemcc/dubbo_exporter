@@ -22,7 +22,6 @@ public class MetricsController {
     @RequestMapping( "/metrics" )
     @ResponseBody
     public RockerModel metrics() {
-        ConcurrentMap<Statistics, AtomicReference<long[]>> statistics = monitorService.current();
-        return templates.Metrics.template( statistics );
+        return templates.Metrics.template( monitorService.providerStatistics(), monitorService.consumerStatistics() );
     }
 }

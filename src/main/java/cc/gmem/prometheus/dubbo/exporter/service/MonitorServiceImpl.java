@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -20,13 +21,15 @@ public class MonitorServiceImpl implements MonitorService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger( MonitorServiceImpl.class );
 
-    // If true, the first metric put into statisticsMap must have non-zero request(success + failure) count
+    // If true, the first metric put into statMap must have non-zero request(success + failure) count
     @Value( "${dubbo.exporter.discard.empty.metrics}" )
     private boolean discardEmptyMetrics;
 
     private static final int LENGTH = 11;
 
-    private final ConcurrentMap<Statistics, AtomicReference<long[]>> statisticsMap = new ConcurrentHashMap<Statistics, AtomicReference<long[]>>();
+    private final ConcurrentMap<Statistics, AtomicReference<long[]>> statisticsMapConsumer = new ConcurrentHashMap<Statistics, AtomicReference<long[]>>();
+
+    private final ConcurrentMap<Statistics, AtomicReference<long[]>> statisticsMapProvider = new ConcurrentHashMap<Statistics, AtomicReference<long[]>>();
 
     @Override
     public void collect( URL url ) {
@@ -43,6 +46,8 @@ public class MonitorServiceImpl implements MonitorService {
         int maxElapsed = url.getParameter( MonitorService.MAX_ELAPSED, 0 );
         int maxConcurrent = url.getParameter( MonitorService.MAX_CONCURRENT, 0 );
         Statistics statistics = new Statistics( url );
+        boolean sendFromProvider = url.getParameter( MonitorService.CONSUMER ) == null ? false : true;
+        ConcurrentMap<Statistics, AtomicReference<long[]>> statisticsMap = sendFromProvider ? statisticsMapProvider : statisticsMapConsumer;
         AtomicReference<long[]> reference = statisticsMap.get( statistics );
         if ( reference == null ) {
             if ( discardEmptyMetrics && total == 0 ) {
@@ -88,7 +93,11 @@ public class MonitorServiceImpl implements MonitorService {
         throw new UnsupportedOperationException();
     }
 
-    public ConcurrentMap<Statistics, AtomicReference<long[]>> current() {
-        return statisticsMap;
+    public ConcurrentMap<Statistics, AtomicReference<long[]>> consumerStatistics() {
+        return statisticsMapConsumer;
+    }
+
+    public ConcurrentMap<Statistics, AtomicReference<long[]>> providerStatistics() {
+        return statisticsMapProvider;
     }
 }
