@@ -43,6 +43,14 @@ spec:
         volumeMounts:
         - mountPath: /config
           name: config
+        livenessProbe:
+          httpGet:
+            path: /metrics
+            port: 9100
+          failureThreshold: 3
+          initialDelaySeconds: 30
+          periodSeconds: 60
+          timeoutSeconds: 5
       volumes:
       - name: config
         configMap:
